@@ -2,8 +2,8 @@ import { Houses } from '../ui/houses';
 import Search from '../ui/search';
 import { fetchCardData } from '../lib/data';
 
-export default async function Home({ query }) {
-  let houses = await fetchCardData(query);
+export default async function Home() {
+  let houses = await fetchCardData();
 
   return (
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
