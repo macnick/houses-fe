@@ -1,9 +1,10 @@
-import { Loading } from './ui/Loading';
-import { Houses } from './ui/houses';
-import Search from './ui/search';
-import { Suspense } from 'react';
+import { Houses } from '../ui/houses';
+import Search from '../ui/search';
+import { fetchCardData } from '../lib/data';
 
-export default function Home() {
+export default async function Home({ query }) {
+  let houses = await fetchCardData(query);
+
   return (
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
       <div className='flex flex-col items-center mb-12'>
@@ -18,9 +19,7 @@ export default function Home() {
         <Search placeholder='Search by house name' />
       </div>
       <div>
-        <Suspense fallback={<Loading />}>
-          <Houses />
-        </Suspense>
+        <Houses houses={houses} />
       </div>
     </main>
   );
